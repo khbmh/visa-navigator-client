@@ -6,7 +6,7 @@ function MainLayout() {
   return (
     <div>
       <Header />
-      <div className="min-h-[90vh]">
+      <div className="min-h-[90vh] mx-auto container">
         <Outlet />
       </div>
       <Footer />
