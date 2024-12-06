@@ -17,19 +17,19 @@ function Header() {
   // Effect to update CSS variables dynamically
   useEffect(() => {
     if (theme === 'light') {
-      document.documentElement.style.setProperty('--back', '#120f0f');
-      document.documentElement.style.setProperty('--front', '#f8f8f8');
+      document.documentElement.style.setProperty('--back', '#222');
+      document.documentElement.style.setProperty('--front', '#dcd');
       document.documentElement.style.setProperty('--middle', '#026d6d');
     } else if (theme === 'dark') {
       document.documentElement.style.setProperty('--back', '#f8f8f8');
-      document.documentElement.style.setProperty('--front', '#120f0f');
+      document.documentElement.style.setProperty('--front', '#292828');
       document.documentElement.style.setProperty('--middle', '#07dada');
     }
   }, [theme]);
 
   return (
-    <div className="w-full mid h-[15vh] lg:h-[10vh] flex justify-center items-center">
-      <div className="navbar">
+    <div className="w-full h-[10vh] flex justify-center items-center">
+      <div className="navbar z-40 fixed mid h-[10vh]">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -61,7 +61,7 @@ function Header() {
             alt="logo"
             className="w-10"
           />{' '}
-          <span className="text-xl ml-2 font-bold font-mono">
+          <span className="text-xl ml-2 font-bold font-mono hidden lg:flex">
             Visa Navigator
           </span>
         </div>
