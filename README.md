@@ -1,8 +1,20 @@
-# React + Vite
+# Visa Navigator Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site URL:** [Visa Navigator](https://visa-navigator-khbmh.surge.sh)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication:** Secure login and registration with Google social login.
+- **Visa Information:** Browse and filter visas by type, view detailed visa information.
+- **Add Visa:** Logged-in users can add new visa entries with comprehensive details.
+- **My Added Visas:** Manage and update personal visa entries added to the portal.
+- **My Visa Applications:** Track visa applications and cancel them if necessary.
+- **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
+- **Dark/Light Theme Toggle:** Switch between themes for comfortable browsing.
+
+## Technologies Used
+
+- **Frontend:** React, React Router, Daisy ui, Tailwind CSS
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** Firebase
+- **Deployment:** Surge (Client), Vercel (Server)
