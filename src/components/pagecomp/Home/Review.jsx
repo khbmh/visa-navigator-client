@@ -49,9 +49,9 @@ function Review() {
       <h1 className="text-3xl lg:text-5xl text-center font-bold my-8">
         What Our Customers Say About Us
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 justify-between flex-grow">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-between flex-grow">
         {reviews.map((review) => (
-          <div key={review.name} className="mb-8 mid p-4 rounded-lg">
+          <div key={review.name} className="mid p-4 rounded-lg">
             <div className="flex items-center space-x-4">
               <img
                 src={review.img}

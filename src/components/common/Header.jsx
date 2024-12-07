@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router';
+import { useContext, useEffect, useState } from 'react';
+import { NavLink, Link } from 'react-router';
+import { AuthContext } from '../contexts/AuthContext';
 
 function Header() {
+  const { user, logOut, userLoading } = useContext(AuthContext);
+
   const menu = (
     <ul className="flex flex-col lg:flex-row gap-3 lg:gap-6">
       <NavLink to="/">Home</NavLink>
@@ -50,7 +53,7 @@ function Header() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content mid p-4 rounded-box z-[1] mt-6 w-52 shadow"
             >
               {menu}
             </ul>
@@ -69,13 +72,36 @@ function Header() {
           <ul className="menu menu-horizontal px-1">{menu}</ul>
         </div>
         <div className="navbar-end">
-          <div>
+          <div className="flex items-center justify-between">
             <input
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               type="checkbox"
               className="toggle toggle-md rotate-180"
               defaultChecked
             />
+            {!user ? (
+              <div
+                className={`${userLoading && 'invisible'} navbar-end space-x-3 flex ml-2`}
+              >
+                <Link to="/login" className="btn mid btn-success">
+                  Login
+                </Link>
+                <Link to="/register" className="btn btn-outline btn-success">
+                  Register
+                </Link>
+              </div>
+            ) : (
+              <div
+                className={`${userLoading && 'invisible'} items-center space-x-3 flex ml-2`}
+              >
+                <p className="mx-2 font-semibold text-md lg:text-xl flex">
+                  👋 {user.displayName}
+                </p>
+                <p onClick={logOut} className="btn mid">
+                  LogOut
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

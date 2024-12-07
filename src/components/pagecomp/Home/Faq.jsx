@@ -22,7 +22,7 @@ function Faq() {
     },
   ];
   return (
-    <div className="container mx-auto w-[70vw] my-16">
+    <div className="container mx-auto px-4 lg:w-[70vw] my-16">
       <h1 className="text-3xl lg:text-5xl text-center font-bold my-8">
         Frequently Asked Questions
       </h1>

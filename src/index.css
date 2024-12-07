@@ -12,12 +12,19 @@
   transition: all 0.3s ease-in-out;
 }
 
-body {
+body,
+.input {
   background-color: var(--back);
   color: var(--front);
 }
 
-.mid {
+.google {
+  background-color: var(--back);
+  color: var(--front);
+}
+
+.mid,
+.label-text {
   background-color: var(--middle);
   color: var(--front);
 }
