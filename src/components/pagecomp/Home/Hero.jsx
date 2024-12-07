@@ -1,7 +1,7 @@
 function Hero() {
   return (
-    <div className="">
-      <div className="carousel w-full h-[90vh]">
+    <div className="-mt-[10vh]">
+      <div className="carousel w-full h-screen">
         <div id="slide1" className="carousel-item relative w-full">
           <div className="absolute h-full w-full text-center left-[50%] top-[50%] bg-black/50 -translate-x-[50%] -translate-y-[50%]"></div>
           <div className="absolute text-center left-[50%] top-[50%] text-white -translate-x-[50%] -translate-y-[50%]">
