@@ -4,7 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { DataContext } from '../contexts/DataContext';
 function AddVisa() {
   const { user } = useContext(AuthContext);
-  const { handleIncrement } = useContext(DataContext);
+  const { handleIncrement, setMongoData } = useContext(DataContext);
   const [requiredDocuments, setRequiredDocuments] = useState([]);
 
   const handleCheckboxChange = (e) => {
@@ -33,10 +33,9 @@ function AddVisa() {
       timestamp: new Date().toISOString(),
     };
 
-    // console.log('Form Data:', formData);
-    // Here you can add your logic to send the formData to your backend
+    
 
-    fetch('http://localhost:4000/allvisa', {
+    fetch('https://visa-server-mauve.vercel.app/allvisa', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,13 +44,12 @@ function AddVisa() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setMongoData(data);
         toast.success('Added successfully');
         handleIncrement();
         e.target.reset();
       })
       .catch((error) => {
-        console.error('Error:', error);
         toast.error('An error occurred while adding the visa');
       });
   };

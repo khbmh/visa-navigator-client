@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
 function MyAddedVisa() {
-  const { data, updateData } = useContext(DataContext);
+  const { data, updateData, setMongoData } = useContext(DataContext);
   const { user } = useContext(AuthContext);
 
   const handleDelete = (_id) => {
@@ -22,12 +22,12 @@ function MyAddedVisa() {
         const updatedData = data.filter((visa) => visa._id !== _id);
         updateData(updatedData);
 
-        fetch(`http://localhost:4000/allvisa/${_id}`, {
+        fetch(`https://visa-server-mauve.vercel.app/allvisa/${_id}`, {
           method: 'DELETE',
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            setMongoData(data);
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: 'Deleted!',

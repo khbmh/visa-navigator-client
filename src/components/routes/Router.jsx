@@ -25,7 +25,7 @@ const Router = createBrowserRouter([
         path: '/update-visa/:id',
         element: <UpdateVisa />,
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/allvisa/${params.id}`),
+          fetch(`https://visa-server-mauve.vercel.app/allvisa/${params.id}`),
       },
       {
         path: '/add-visa',

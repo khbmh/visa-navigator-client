@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
 
 function SingleVisa() {
-  const { data, handleIncrement } = useContext(DataContext);
+  const { data, handleIncrement, setMongoData } = useContext(DataContext);
   const { user } = useContext(AuthContext);
   const { url } = useParams();
   const visa = data.find((info) => info._id == url);
@@ -27,7 +27,7 @@ function SingleVisa() {
       currentDate: currentDate,
     };
     delete applyData._id;
-    fetch('http://localhost:4000/visaApplications', {
+    fetch('https://visa-server-mauve.vercel.app/visaApplications', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,12 +36,11 @@ function SingleVisa() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setMongoData(data);
         toast.success('Added successfully');
         handleIncrement();
       })
       .catch((error) => {
-        console.error('Error:', error);
         toast.error('An error occurred while adding the visa');
       });
   };
