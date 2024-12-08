@@ -9,6 +9,8 @@ import MyApplications from '../pages/MyApplications';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import PrivateRoutes from '../private/PrivateRoutes';
+import PublicRoutes from '../private/PublicRoutes';
+import SingleVisa from '../pages/SingleVisa';
 
 const Router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const Router = createBrowserRouter([
         ),
       },
       {
+        path: `visa/:url`,
+        element: (
+          <PrivateRoutes>
+            <SingleVisa />
+          </PrivateRoutes>
+        ),
+      },
+      {
         path: '/my-visa-applications',
         element: (
           <PrivateRoutes>
@@ -42,8 +52,22 @@ const Router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
-      { path: '/register', element: <Register /> },
-      { path: '/login', element: <Login /> },
+      {
+        path: '/register',
+        element: (
+          <PublicRoutes>
+            <Register />
+          </PublicRoutes>
+        ),
+      },
+      {
+        path: '/login',
+        element: (
+          <PublicRoutes>
+            <Login />
+          </PublicRoutes>
+        ),
+      },
     ],
   },
 ]);

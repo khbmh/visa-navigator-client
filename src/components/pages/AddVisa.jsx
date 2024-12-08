@@ -31,7 +31,7 @@ function AddVisa() {
       timestamp: new Date().toISOString(),
     };
 
-    console.log('Form Data:', formData);
+    // console.log('Form Data:', formData);
     // Here you can add your logic to send the formData to your backend
 
     fetch('http://localhost:4000/allvisa', {
@@ -90,6 +90,7 @@ function AddVisa() {
               <option>Tourist Visa</option>
               <option>Student Visa</option>
               <option>Official Visa</option>
+              <option>Diplomatic Visa</option>
             </select>
           </div>
           <div className="form-control">
@@ -192,6 +193,26 @@ function AddVisa() {
               <input
                 type="checkbox"
                 className="checkbox checkbox-success"
+                value="Visa Application Form"
+                onChange={handleCheckboxChange}
+              />
+              <span className="label-text ml-2">
+                Official Invitation Letter
+              </span>
+            </label>
+            <label className="label cursor-pointer">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-success"
+                value="Visa Application Form"
+                onChange={handleCheckboxChange}
+              />
+              <span className="label-text ml-2">Government Identification</span>
+            </label>
+            <label className="label cursor-pointer">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-success"
                 value="Recent Passport-sized Photograph"
                 onChange={handleCheckboxChange}
               />
@@ -202,7 +223,7 @@ function AddVisa() {
           </div>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-success">Add Visa</button>
+          <button className="btn btn-success mid">Add Visa</button>
         </div>
       </form>
     </div>

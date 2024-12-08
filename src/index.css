@@ -59,3 +59,7 @@ input:active {
   background-color: var(--front);
   color: var(--back);
 }
+.btnnn {
+  background-color: var(--back);
+  color: var(--front);
+}
