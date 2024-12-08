@@ -11,6 +11,7 @@ import Login from '../pages/Login';
 import PrivateRoutes from '../private/PrivateRoutes';
 import PublicRoutes from '../private/PublicRoutes';
 import SingleVisa from '../pages/SingleVisa';
+import UpdateVisa from '../pages/UpdateVisa';
 
 const Router = createBrowserRouter([
   {
@@ -20,6 +21,12 @@ const Router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/all-visa', element: <AllVisa /> },
+      {
+        path: '/update-visa/:id',
+        element: <UpdateVisa />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/allvisa/${params.id}`),
+      },
       {
         path: '/add-visa',
         element: (

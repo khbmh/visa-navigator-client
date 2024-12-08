@@ -8,8 +8,8 @@
   --middle: #07dada;
 }
 
-* {
-  transition: all 0.3s ease-in-out;
+body {
+  transition: color 0.6s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 html {

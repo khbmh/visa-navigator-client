@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-
+import toast, { Toaster } from 'react-hot-toast';
+import { DataContext } from '../contexts/DataContext';
 function AddVisa() {
   const { user } = useContext(AuthContext);
+  const { handleIncrement } = useContext(DataContext);
   const [requiredDocuments, setRequiredDocuments] = useState([]);
 
   const handleCheckboxChange = (e) => {
@@ -44,6 +46,13 @@ function AddVisa() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        toast.success('Added successfully');
+        handleIncrement();
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        toast.error('An error occurred while adding the visa');
       });
   };
 
@@ -226,6 +235,7 @@ function AddVisa() {
           <button className="btn btn-success mid">Add Visa</button>
         </div>
       </form>
+      <Toaster />
     </div>
   );
 }
