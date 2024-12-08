@@ -12,19 +12,30 @@
   transition: all 0.3s ease-in-out;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body,
-.input {
+.input,
+.label-text,
+.textarea,
+.select {
   background-color: var(--back);
   color: var(--front);
 }
-
+.input,
+.select,
+.textarea,
+input:active {
+  border: 1px solid var(--front);
+}
 .google {
   background-color: var(--back);
   color: var(--front);
 }
 
-.mid,
-.label-text {
+.mid {
   background-color: var(--middle);
   color: var(--front);
 }
