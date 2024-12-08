@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 function AddVisa() {
+  const { user } = useContext(AuthContext);
   const [requiredDocuments, setRequiredDocuments] = useState([]);
 
   const handleCheckboxChange = (e) => {
@@ -8,7 +10,7 @@ function AddVisa() {
     if (checked) {
       setRequiredDocuments([...requiredDocuments, value]);
     } else {
-      setRequiredDocuments(requiredDocuments.filter(doc => doc !== value));
+      setRequiredDocuments(requiredDocuments.filter((doc) => doc !== value));
     }
   };
 
@@ -25,10 +27,24 @@ function AddVisa() {
       validity: e.target.validity.value,
       applicationMethod: e.target.applicationMethod.value,
       requiredDocuments: requiredDocuments,
+      uploader: user.email,
+      timestamp: new Date().toISOString(),
     };
 
     console.log('Form Data:', formData);
     // Here you can add your logic to send the formData to your backend
+
+    fetch('http://localhost:4000/allvisa', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
@@ -38,117 +54,116 @@ function AddVisa() {
       </h1>
 
       <form className="card-body" onSubmit={handleAddVisa}>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Country Image</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter image URL"
-            name="imageUrl"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Country Name</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter country name"
-            name="countryName"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Visa Type</span>
-          </label>
-          <select
-            name="visaType"
-            className="select select-bordered"
-            required
-          >
-            <option disabled selected>
-              Select visa type
-            </option>
-            <option>Tourist Visa</option>
-            <option>Student Visa</option>
-            <option>Official Visa</option>
-          </select>
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Processing Time</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter processing time"
-            name="processingTime"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Description</span>
-          </label>
-          <textarea
-            placeholder="Enter description"
-            name="description"
-            className="textarea textarea-bordered"
-            required
-          ></textarea>
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Age Restriction</span>
-          </label>
-          <input
-            type="number"
-            placeholder="Enter age restriction"
-            name="ageRestriction"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Fee</span>
-          </label>
-          <input
-            type="number"
-            placeholder="Enter fee"
-            name="fee"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Validity</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter validity"
-            name="validity"
-            className="input input-bordered"
-            required
-          />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Application Method</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter application method"
-            name="applicationMethod"
-            className="input input-bordered"
-            required
-          />
+        <div className="lg:grid lg:grid-cols-2 space-y-3 lg:space-y-0 gap-y-3 gap-x-6">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Country Image</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter image URL"
+              name="imageUrl"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Country Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter country name"
+              name="countryName"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Visa Type</span>
+            </label>
+            <select name="visaType" className="select select-bordered" required>
+              <option disabled selected>
+                Select visa type
+              </option>
+              <option>Tourist Visa</option>
+              <option>Student Visa</option>
+              <option>Official Visa</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Processing Time</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter processing time"
+              name="processingTime"
+              className="input input-bordered"
+              required
+            />
+          </div>
+
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Age Restriction</span>
+            </label>
+            <input
+              type="number"
+              placeholder="Enter age restriction"
+              name="ageRestriction"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Fee</span>
+            </label>
+            <input
+              type="number"
+              placeholder="Enter fee"
+              name="fee"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Validity</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter validity"
+              name="validity"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Application Method</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter application method"
+              name="applicationMethod"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control col-span-2">
+            <label className="label">
+              <span className="label-text">Description</span>
+            </label>
+            <textarea
+              placeholder="Enter description"
+              name="description"
+              className="textarea textarea-bordered"
+              required
+            ></textarea>
+          </div>
         </div>
         <div className="form-control">
           <label className="label">
@@ -158,7 +173,7 @@ function AddVisa() {
             <label className="label cursor-pointer">
               <input
                 type="checkbox"
-                className="checkbox"
+                className="checkbox checkbox-success"
                 value="Valid Passport"
                 onChange={handleCheckboxChange}
               />
@@ -167,7 +182,7 @@ function AddVisa() {
             <label className="label cursor-pointer">
               <input
                 type="checkbox"
-                className="checkbox"
+                className="checkbox checkbox-success"
                 value="Visa Application Form"
                 onChange={handleCheckboxChange}
               />
@@ -176,7 +191,7 @@ function AddVisa() {
             <label className="label cursor-pointer">
               <input
                 type="checkbox"
-                className="checkbox"
+                className="checkbox checkbox-success"
                 value="Recent Passport-sized Photograph"
                 onChange={handleCheckboxChange}
               />
