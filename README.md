@@ -1,6 +1,6 @@
 # Visa Navigator Portal
 
-**Live Site URL:** [Visa Navigator](https://visa-navigator-khbmh.surge.sh)
+**Live Site URL:** [Visa Navigator](https://visa-navigator-khbmh.web.app)
 
 ## Features
 

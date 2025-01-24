@@ -41,7 +41,7 @@ function SingleVisa() {
         handleIncrement();
       })
       .catch((error) => {
-        toast.error('An error occurred while adding the visa');
+        toast.error('error', error);
       });
   };
 
